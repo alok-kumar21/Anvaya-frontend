@@ -1,0 +1,84 @@
+:root {
+  --darkCharcoalGray: #0e1116;
+  --deepNavyGray: #12151d;
+  --softGray: #cbd5e1;
+  --lightLavenderGray: #d1d5db;
+  --steelyBlue: #2d3c54;
+  --lightBlue: #93c5fd;
+  --mutedWhite: #e5e7eb;
+  --jetBlack: #111827;
+}
+
+.brand {
+  background-color: var(--darkCharcoalGray);
+  color: var(--lightLavenderGray);
+}
+.sidebar {
+  height: 100vh;
+  background-color: var(--darkCharcoalGray);
+  color: var(--softGray);
+}
+.sidebar ul li {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.main-content {
+  background-color: var(--deepNavyGray);
+}
+.col-md-2 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.col-md-10 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.btn-bg {
+  background-color: var(--steelyBlue);
+  color: var(--lightBlue);
+  font-weight: bold;
+}
+.btn-bg:hover {
+  border: 1px solid var(--lightBlue);
+  background-color: var(--deepNavyGray);
+  color: var(--lightBlue);
+}
+.list-status {
+  color: var(--lightLavenderGray);
+}
+.add-btn {
+  background-color: var(--darkCharcoalGray);
+  color: var(--lightLavenderGray);
+}
+.add-btn:hover {
+  border: 1px solid var(--lightLavenderGray);
+  background-color: var(--deepNavyGray);
+  color: var(--lightLavenderGray);
+}
+
+body {
+  background-color: var(--darkCharcoalGray);
+}
+.addLeadForm {
+  color: var(--lightLavenderGray);
+}
+.leadDetails {
+  color: var(--lightLavenderGray);
+}
+.lead-side-content {
+  font-size: larger;
+}
+.lead-content {
+  margin-top: 30px;
+  background-color: var(--deepNavyGray);
+  font-size: larger;
+}
+.back-btn:hover {
+  color: var(--lightBlue);
+}
+.leadlist {
+  color: var(--lightLavenderGray);
+}
+label {
+  color: var(--lightBlue);
+}
