@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -6,17 +7,25 @@ const useFetch = (url) => {
 
   useEffect(() => {
     setLoading(true);
+
     fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
+      .then((res) => {
+        if (!res.ok) {
+          return "failed to get Data";
+        }
+        return res.json();
+      })
+      .then((Data) => {
+        setData(Data);
+        setLoading(false);
       })
       .catch((error) => {
         setError(error.message);
       })
       .finally(() => setLoading(false));
   }, [url]);
-  return data, loading, error;
+
+  return { data, loading, error };
 };
 
 export default useFetch;
