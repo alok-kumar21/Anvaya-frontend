@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 const LeadContext = createContext();
 
@@ -10,8 +10,21 @@ import useFetch from "../pages/useFetch";
 
 export function LeadProvider({ children }) {
   const { data, loading, error } = useFetch(`http://localhost:5001/leads`);
+
+  const [leads, setLeads] = useState();
+
+  let filterLead;
+  if (data) {
+    filterLead = [...data];
+  }
+
+  function quickFilter(status) {
+    filterLead = filterLead?.filter((lead) => lead.status === status);
+    setLeads(filterLead);
+  }
+
   return (
-    <LeadContext.Provider value={{ data, loading, error }}>
+    <LeadContext.Provider value={{ leads, loading, error, quickFilter }}>
       {children}
     </LeadContext.Provider>
   );

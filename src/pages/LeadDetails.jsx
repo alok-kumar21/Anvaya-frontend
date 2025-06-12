@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
 const LeadDetails = () => {
+  const leadId = useParams();
+  console.log(leadId);
   return (
     <section className="mx-5 leadDetails py-4">
       <div className="text-center mb-4">
@@ -10,7 +13,10 @@ const LeadDetails = () => {
 
       <div className="row ">
         <div className="lead-side-content col-12 col-md-2 mt-5">
-          <Link to="/" className="back-btn text-decoration-none text-white ms-4 ">
+          <Link
+            to="/"
+            className="back-btn text-decoration-none text-white ms-4 "
+          >
             <i class="bi bi-arrow-left"></i> Dashboard
           </Link>
         </div>

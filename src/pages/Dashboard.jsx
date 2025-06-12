@@ -4,19 +4,12 @@ import useLeadContext from "../context/LeadContent";
 import { useState } from "react";
 
 const Dashboard = () => {
-  let { data, loading, error } = useLeadContext();
-  const [filter, setFilter] = useState(data);
+  const { leads, loading, error, quickFilter } = useLeadContext();
 
-  const newLeads = data?.filter((lead) => lead.status === "New");
-  const contactedLeads = data?.filter((lead) => lead.status === "Contacted");
-  const qualifiedLeads = data?.filter((lead) => lead.status === "Qualified");
+  const newLeads = leads?.filter((lead) => lead.status === "New");
+  const contactedLeads = leads?.filter((lead) => lead.status === "Contacted");
+  const qualifiedLeads = leads?.filter((lead) => lead.status === "Qualified");
 
-  function quickFilter(status) {
-    data = data?.filter((lead) => lead.status === status);
-    console.log(data);
-  }
-
-  console.log(filter);
   return (
     <>
       <section className="container">
@@ -71,8 +64,8 @@ const Dashboard = () => {
 
             <div className=" lead-content col-12  col-md-10 ">
               <div className="mt-4 row">
-                {filter?.map((lead) => (
-                  <div key={lead._id} className="col-md-4">
+                {leads?.map((lead) => (
+                  <div key={lead._id} className="col-12 col-md-4 col-lg-4 ">
                     <div className="card">
                       <div className="card-header">
                         <h2>{lead.name}</h2>
@@ -101,18 +94,21 @@ const Dashboard = () => {
               <hr className="mt-4 mb-4" />
               <ul className="list text-white">
                 <h3 className="mb-4">Quick Filter</h3>
-                <li
-                  className=" btn btn-lg btn-bg"
-                  onClick={() => quickFilter("New")}
-                >
-                  New
+                <li className="list-group-item">
+                  <button
+                    className=" btn btn-lg btn-bg"
+                    onClick={() => quickFilter("New")}
+                  >
+                    New
+                  </button>
+                  <button
+                    className=" btn btn-lg btn-bg ms-3"
+                    onClick={() => quickFilter("Contacted")}
+                  >
+                    Contacted
+                  </button>
                 </li>
-                <li
-                  className="ms-3 btn btn-lg btn-bg"
-                  onClick={() => quickFilter("Contacted")}
-                >
-                  Contacted
-                </li>
+
                 <br />
                 <Link to="/addlead" className="mt-5 btn btn-lg add-btn">
                   Add New Lead
