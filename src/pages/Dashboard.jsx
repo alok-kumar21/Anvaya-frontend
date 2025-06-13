@@ -72,7 +72,12 @@ const Dashboard = () => {
                       </div>
                       <div className="card-body">
                         <p>Status: {lead.status}</p>
-                        <Link className="btn btn-bg">View Details</Link>
+                        <Link
+                          to={`/leaddetails/${lead._id}`}
+                          className="btn btn-bg"
+                        >
+                          View Details
+                        </Link>
                       </div>
                     </div>
                   </div>

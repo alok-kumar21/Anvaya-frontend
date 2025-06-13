@@ -1,6 +1,43 @@
 import "../App.css";
+import { useState } from "react";
 
 const AddLead = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    source: "",
+    status: "",
+    tags: [],
+    timeToClose: "",
+    priority: "",
+  });
+
+  function formDataHandler(event) {
+    const { value, name } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
+  async function formSubmitHandler(event) {
+    event.preventDefault();
+    // try {
+    //   const response = await fetch(`http://localhost:5001/leads`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
+    //   if (!response.ok) {
+    //     throw new Error("Failed to add Data ");
+    //   }
+    // } catch (error) {
+    //   console.log("Error:", error);
+    // }
+    console.log(formData);
+  }
+
   return (
     <>
       <section className=" container">
@@ -8,7 +45,7 @@ const AddLead = () => {
           <h1 className="text-center text-white">Add New Lead</h1>
         </div>
         <hr />
-        <form className="mb-5">
+        <form onSubmit={formSubmitHandler} className="mb-5">
           <label className="form-label" htmlFor="leadname">
             Name
           </label>
@@ -18,12 +55,21 @@ const AddLead = () => {
             className="form-control "
             type="text"
             placeholder="Name"
+            name="name"
+            value={formData.name}
+            onChange={formDataHandler}
           />
           <br />
           <label className="form-label" htmlFor="selectSource">
             Select Source
           </label>
-          <select id="selectSource" className="form-select" name="">
+          <select
+            value={formData.source}
+            onChange={formDataHandler}
+            name="source"
+            id="selectSource"
+            className="form-select"
+          >
             <option value="#">Select lead Source</option>
             <option value="Website">Website</option>
             <option value="Referral">Referral</option>
@@ -33,7 +79,13 @@ const AddLead = () => {
           <label className="form-label" htmlFor="selectStatus">
             Select Lead Status
           </label>
-          <select id="selectStatus" className="form-select" name="">
+          <select
+            value={formData.status}
+            onChange={formDataHandler}
+            id="selectStatus"
+            className="form-select"
+            name="status"
+          >
             <option value="#">Select Lead Status</option>
             <option value="New">New</option>
             <option value="Qualified">Qualified</option>
@@ -41,10 +93,18 @@ const AddLead = () => {
             <option value="Closed">Closed</option>
           </select>
           <br />
-          <label className="form-label" htmlFor="selectTags">
+          <label className="form-label" htmlFor="multiple">
             Select Tags
           </label>
-          <select id="selectTags" className="form-select" name="" multiple>
+          <select
+            value={formData.tags}
+            onChange={formDataHandler}
+            id="multiple"
+            className="form-select"
+            aria-label="Multiple select example"
+            name="tags"
+            multiple
+          >
             <option value="#">Select Tags</option>
             <option value="High Value">High Value</option>
             <option value="Follow-up">Follow-up</option>
@@ -58,19 +118,30 @@ const AddLead = () => {
             className="form-control"
             type="number"
             placeholder="Time to Close"
+            name="timeToClose"
+            value={formData.timeToClose}
+            onChange={formDataHandler}
           />
           <br />
           <label className="form-label" htmlFor="selectPriority">
             Priority
           </label>
-          <select id="selectPriority" className="form-select" name="">
+          <select
+            value={formData.priority}
+            onChange={formDataHandler}
+            id="selectPriority"
+            className="form-select"
+            name="priority"
+          >
             <option value="#">Select Priority</option>
             <option value="High">High</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
           </select>
           <br />
-          <button className="btn btn-lg btn-bg">Create New Lead</button>
+          <button type="submit" className="btn btn-lg btn-bg">
+            Create New Lead
+          </button>
         </form>
       </section>
     </>

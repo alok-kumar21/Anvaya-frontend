@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/addlead" element={<AddLead />} />
-            <Route path="/leaddetails" element={<LeadDetails />} />
+            <Route path="/leaddetails/:leadId" element={<LeadDetails />} />
             <Route path="/leadlist" element={<LeadList />} />
             <Route path="/salesagent" element={<SalesAgentManagement />} />
             <Route path="/addsalesagent" element={<AddAgetnForm />} />
