@@ -9,6 +9,11 @@ export default useLeadContext;
 
 export function LeadProvider({ children }) {
   const { data, loading, error } = useFetch(`http://localhost:5001/leads`);
+  const {
+    data: salesData,
+    loading: salesLoading,
+    error: salesError,
+  } = useFetch(`http://localhost:5001/v2/agents`);
 
   const [leads, setLeads] = useState([]);
   const [filteredLeads, setFilteredLeads] = useState([]);
@@ -27,7 +32,15 @@ export function LeadProvider({ children }) {
 
   return (
     <LeadContext.Provider
-      value={{ leads: filteredLeads, loading, error, quickFilter }}
+      value={{
+        leads: filteredLeads,
+        loading,
+        error,
+        quickFilter,
+        salesData,
+        salesLoading,
+        salesError,
+      }}
     >
       {children}
     </LeadContext.Provider>

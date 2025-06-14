@@ -13,6 +13,14 @@ const Dashboard = () => {
   return (
     <>
       <section className="container">
+        {loading && (
+          <div className="alert alert-success text-center">Loading...</div>
+        )}
+        {error && (
+          <div className="alert alert-danger text-center">
+            Failed to get Lead Data
+          </div>
+        )}
         <header>
           <nav className=" brand p-3">
             <h1 className="text-center">Anvaya CRM App</h1>
@@ -64,7 +72,7 @@ const Dashboard = () => {
 
             <div className=" lead-content col-12  col-md-10 ">
               <div className="mt-4 row">
-                {leads?.map((lead) => (
+                {leads?.slice(0, 3).map((lead) => (
                   <div key={lead._id} className="col-12 col-md-4 col-lg-4 ">
                     <div className="card">
                       <div className="card-header">

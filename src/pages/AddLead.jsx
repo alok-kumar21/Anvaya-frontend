@@ -12,29 +12,37 @@ const AddLead = () => {
   });
 
   function formDataHandler(event) {
-    const { value, name } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    const { value, name, selectedOptions } = event.target;
+    if (name === "tags") {
+      const values = Array.from(selectedOptions, (option) => option.value);
+      setFormData((prev) => ({
+        ...prev,
+        [name]: values,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   }
 
   async function formSubmitHandler(event) {
     event.preventDefault();
-    // try {
-    //   const response = await fetch(`http://localhost:5001/leads`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error("Failed to add Data ");
-    //   }
-    // } catch (error) {
-    //   console.log("Error:", error);
-    // }
+    try {
+      const response = await fetch(`http://localhost:5001/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add Data ");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
     console.log(formData);
   }
 
