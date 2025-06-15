@@ -1,7 +1,6 @@
 import "../App.css";
 import { Link } from "react-router-dom";
 import useLeadContext from "../context/LeadContent";
-import { useState } from "react";
 
 const Dashboard = () => {
   const { leads, loading, error, quickFilter } = useLeadContext();
@@ -33,7 +32,7 @@ const Dashboard = () => {
               <ul className="list">
                 <li className="list-group-item h5 pt-5 ps-4">
                   <Link
-                    to="/leadstatusview"
+                    to="/leadlist"
                     className="text-decoration-none text-white"
                   >
                     <i className="bi bi-arrow-bar-right"></i> Leads
