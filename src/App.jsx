@@ -14,6 +14,7 @@ import SalesAgentManagement from "./pages/SalesAgentManagement";
 import AddAgetnForm from "./pages/AddAgentForm";
 import Report from "./pages/Report";
 import LeadStatusView from "./pages/LeadStatusView";
+import SalesAgentView from "./pages/SalesAgentView";
 
 import { LeadProvider } from "./context/LeadContent";
 
@@ -25,12 +26,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/addlead" element={<AddLead />} />
-            <Route path="/leaddetails/:leadId" element={<LeadDetails />} />
+            <Route path="/lead-details/:leadId" element={<LeadDetails />} />
             <Route path="/leadlist" element={<LeadList />} />
-            <Route path="/salesagent" element={<SalesAgentManagement />} />
-            <Route path="/addsalesagent" element={<AddAgetnForm />} />
+            <Route path="/sales-agent" element={<SalesAgentManagement />} />
+            <Route path="/add-sales-agent" element={<AddAgetnForm />} />
             <Route path="/report" element={<Report />} />
-            <Route path="/leadstatusview" element={<LeadStatusView />} />
+            <Route path="/lead-status-view" element={<LeadStatusView />} />
+            <Route path="/sales-agent-View" element={<SalesAgentView />} />
           </Routes>
         </Router>
       </LeadProvider>

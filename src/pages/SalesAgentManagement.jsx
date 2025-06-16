@@ -45,7 +45,7 @@ const SalesAgentManagement = () => {
               ))}
 
               <li className="list-group-item mt-4">
-                <Link to="/addsalesagent" className="btn btn-lg add-btn">
+                <Link to="/add-sales-agent" className="btn btn-lg add-btn">
                   Add New Agent
                 </Link>
               </li>

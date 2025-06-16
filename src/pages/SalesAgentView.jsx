@@ -35,3 +35,5 @@ const SalesAgentView = () => {
     </section>
   );
 };
+
+export default SalesAgentView;

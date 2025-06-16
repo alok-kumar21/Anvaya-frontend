@@ -40,7 +40,7 @@ const Dashboard = () => {
                 </li>
                 <li className="list-group-item h5 pt-3 ps-4">
                   <Link
-                    to="/salesagent"
+                    to="/sales-agent"
                     className="text-decoration-none text-white"
                   >
                     <i className="bi bi-bar-chart-fill"></i> Sales
@@ -48,7 +48,6 @@ const Dashboard = () => {
                 </li>
                 <li className="list-group-item h5 pt-3 ps-4">
                   <Link className="text-decoration-none text-white">
-                    {" "}
                     <i className="bi bi-person-fill"></i> Agents
                   </Link>
                 </li>
@@ -80,7 +79,7 @@ const Dashboard = () => {
                       <div className="card-body">
                         <p>Status: {lead.status}</p>
                         <Link
-                          to={`/leaddetails/${lead._id}`}
+                          to={`/lead-details/${lead._id}`}
                           className="btn btn-bg"
                         >
                           View Details

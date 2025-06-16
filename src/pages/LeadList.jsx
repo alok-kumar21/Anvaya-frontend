@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useLeadContext from "../context/LeadContent";
 const LeadList = () => {
   const { leads, loading, error } = useLeadContext();
-
+  console.log(leads);
   return (
     <section className="container leadlist py-4">
       {loading && (
@@ -20,35 +20,45 @@ const LeadList = () => {
       <hr />
 
       <div className="row ">
-        <div className="col-12 col-md-2  ">
-          <Link to="/" className="text-white text-decoration-none">
-            <i className="bi bi-arrow-left "></i> Dashboard
-          </Link>
-          <ul className="list mt-4">
-            <div>
-              <h2>Filters</h2>
+        <div className=" col-12 col-md-2  ">
+          <div className=" navbar-expand-lg">
+            <Link to="/" className="text-white text-decoration-none">
+              <i className="bi bi-arrow-left "></i> Dashboard
+            </Link>
+            <br />
+            <div className="d-grid gap-2 mt-4">
+              <button
+                className="btn p-3 btn-bg  rounded navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#filter"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="bi bi-funnel"></span>
+                Filter
+              </button>
             </div>
-            <li className="list-group-item">
-              <select className="form-select" name="" id="">
-                <option value="#">Select Status</option>
-                <option value="New">New</option>
-                <option value="Qualified">Qualified</option>
-                <option value="Contacted">Contacted</option>
-              </select>
-              <br />
-              <select className="form-select" name="" id="">
-                <option value="#">Select Priority</option>
-                <option value="Hight">Hight</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
-              <br />
-              <button className="btn  btn-bg btn-lg mt-3">Priority</button>
-              <br />
-
-              <button className="btn  btn-bg btn-lg mt-3">Time to Close</button>
-            </li>
-          </ul>
+            <div className="collapse navbar-collapse" id="filter">
+              <ul className=" mt-4">
+                <li className="list-group-item">
+                  <div className="d-grid gapp-2">
+                    <Link to="/lead-status-view" className="btn btn-bg">
+                      Status
+                    </Link>
+                  </div>
+                  <br />
+                  <div className="d-grid gap-2">
+                    <Link to="/sales-agent-View" className="btn btn-bg">
+                      Sales Agent
+                    </Link>
+                  </div>
+                  <br />
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div className=" lead-content col-12 col-md-10 ">
@@ -62,6 +72,7 @@ const LeadList = () => {
                   <div className="card-header">{lead.name}</div>
                   <div className="card-body">
                     <p>Status: {lead.status}</p>
+                    <p>SalesAgent: {lead?.salesAgent?.name}</p>
                   </div>
                 </div>
               </li>
