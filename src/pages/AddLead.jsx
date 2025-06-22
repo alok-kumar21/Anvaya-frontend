@@ -1,50 +1,9 @@
 import "../App.css";
-import { useState } from "react";
+
+import { useLeadContext } from "../context/LeadContent";
 
 const AddLead = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    source: "",
-    status: "",
-    tags: [],
-    timeToClose: "",
-    priority: "",
-  });
-
-  function formDataHandler(event) {
-    const { value, name, selectedOptions } = event.target;
-    if (name === "tags") {
-      const values = Array.from(selectedOptions, (option) => option.value);
-      setFormData((prev) => ({
-        ...prev,
-        [name]: values,
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
-  }
-
-  async function formSubmitHandler(event) {
-    event.preventDefault();
-    try {
-      const response = await fetch(`http://localhost:5001/leads`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to add Data ");
-      }
-    } catch (error) {
-      console.log("Error:", error);
-    }
-    console.log(formData);
-  }
+  const { formDataHandler, formSubmitHandler, formData } = useLeadContext();
 
   return (
     <>

@@ -25,11 +25,12 @@ const AddAgentForm = () => {
         },
         body: JSON.stringify(formData),
       });
+      if (!response.ok) {
+        throw new Error("failed to add sales Agent.");
+      }
     } catch (error) {
       console.log("Error:", error);
     }
-
-    
   }
   return (
     <>
