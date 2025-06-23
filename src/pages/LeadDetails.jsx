@@ -5,6 +5,12 @@ import useFetch from "../pages/useFetch";
 const LeadDetails = () => {
   const { leads, loading, error, updateLeadHandler } = useLeadContext();
   const leadId = useParams();
+  const {
+    data: commentData,
+    loading: commentLoading,
+    error: commentError,
+  } = useFetch(`http://localhost:5001/leads/${leadId.leadId}/comments`);
+  console.log(commentData);
 
   const leaddetails = leads?.find((lead) => lead._id === leadId.leadId);
 
@@ -99,8 +105,16 @@ const LeadDetails = () => {
               <hr />
               {/* comment */}
               <ul className="list mt-5">
-                <li className="list-group-item">Author:</li>
-                <li className="list-group-item">Comment:</li>
+                {commentData?.map((comment) => (
+                  <div>
+                    <li className="list-group-item">
+                      Author : {comment.author?.name}
+                    </li>
+                    <li className="list-group-item">
+                      Comment : {comment.commentText}
+                    </li>
+                  </div>
+                ))}
               </ul>
               <div className="mt-5 mb-5">
                 <form onSubmit={formDataHandler}>

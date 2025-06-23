@@ -87,6 +87,12 @@ export function LeadProvider({ children }) {
     } catch (error) {
       console.log("Error:", error);
     }
+    useEffect(() => {
+      if (data) {
+        setLeads(data);
+        setFilteredLeads(data);
+      }
+    }, [data]);
   }
 
   function updateLeadHandler(leaddetail) {
