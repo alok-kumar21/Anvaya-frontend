@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom";
 import useLeadContext from "../context/LeadContent";
+import { useState } from "react";
 const LeadList = () => {
   const { leads, loading, error } = useLeadContext();
-  console.log(leads);
+  const [tags, setTags] = useState([]);
+  const [status, setStatus] = useState();
+  const [priority, setPriority] = useState();
+  const [filter, setFilter] = useState();
+
+  function tagsHandler(event) {
+    const { checked, value } = event.target;
+    if (checked) {
+      setTags((prev) => [...prev, value]);
+    } else {
+      setTags((prev) => prev.filter((tag) => tag != value));
+    }
+  }
+
   return (
     <section className="container leadlist py-4">
       {loading && (
@@ -26,6 +40,7 @@ const LeadList = () => {
               <i className="bi bi-arrow-left "></i> Dashboard
             </Link>
             <br />
+
             <div className="d-grid gap-2 mt-4">
               <button
                 className="btn p-3 btn-bg  rounded navbar-toggler"
@@ -43,18 +58,69 @@ const LeadList = () => {
             <div className="collapse navbar-collapse" id="filter">
               <ul className=" mt-4">
                 <li className="list-group-item">
-                  <div className="d-grid gapp-2">
-                    <Link to="/lead-status-view" className="btn btn-bg">
-                      Status
-                    </Link>
+                  <div className="d-grid gap-2">
+                    <label className="form-label" name="" id="">
+                      Select Tags
+                    </label>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="High Value"
+                        value="High Value"
+                        onChange={tagsHandler}
+                      />
+                      <label
+                        className="form-check-label text-white"
+                        htmlFor="checkDefault"
+                      >
+                        High Value
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        name="Follow up"
+                        value="Follow up"
+                        onChange={tagsHandler}
+                      />
+                      <label
+                        className="form-check-label text-white"
+                        htmlFor="checkDefault"
+                      >
+                        Follow up
+                      </label>
+                    </div>
                   </div>
                   <br />
                   <div className="d-grid gap-2">
-                    <Link to="/sales-agent-View" className="btn btn-bg">
-                      Sales Agent
-                    </Link>
+                    <select
+                      onChange={(event) => setStatus(event.target.value)}
+                      className="form-select"
+                    >
+                      <option value="#">Select Status</option>
+                      <option value="New">New</option>
+                      <option value="COntacted">Contacted</option>
+                      <option value="Qualified">Qualified</option>
+                      <option value="Proposal Sent">Proposal Sent</option>
+                      <option value="Closed">Closed</option>
+                    </select>
                   </div>
+
                   <br />
+
+                  <div className="d-grid gap-2">
+                    <select
+                      onChange={(event) => setPriority(event.target.value)}
+                      className="form-select"
+                    >
+                      <option value="#">Select Priority</option>
+                      <option value="High">High</option>
+                      <option value="Low">Low</option>
+                      <option value="Medium">Medium</option>
+                    </select>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -67,20 +133,32 @@ const LeadList = () => {
           </div>
           <ul className=" mt-3">
             {leads?.map((lead) => (
-              <li className="list-group-item pt-3">
+              <li key={lead._id} className="list-group-item pt-3">
                 <div className="me-4 card">
-                  <div className="card-header">{lead.name}</div>
+                  <div className="card-header">
+                    <strong>{lead.name}</strong>
+                  </div>
                   <div className="card-body">
-                    <p>Status: {lead.status}</p>
-                    <p>SalesAgent: {lead?.salesAgent?.name}</p>
+                    <p>
+                      <strong>Status:</strong> {lead.status}
+                    </p>
+                    <p>
+                      <strong>SalesAgent:</strong> {lead?.salesAgent?.name}
+                    </p>
+                    <p>
+                      <strong>Tags:</strong> {lead.tags.join(", ")}
+                    </p>
+                    <p>
+                      <strong>Source:</strong> {lead.source}
+                    </p>
                   </div>
                 </div>
               </li>
             ))}
           </ul>
-          <hr className=" mb-5" />
+
           <ul>
-            <li className="list-group-item ">
+            <li className="list-group-item mt-4">
               <Link to="/addlead" className="btn btn-lg add-btn">
                 Add New Lead
               </Link>

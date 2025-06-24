@@ -68,11 +68,11 @@ const Dashboard = () => {
               </ul>
             </div>
 
-            <div className=" lead-content col-12  col-md-10 ">
+            <div className=" lead-content col-12  col-md-10 p-3">
               <div className="mt-4 row">
                 {leads?.slice(0, 3).map((lead) => (
                   <div key={lead._id} className="col-12 col-md-4 col-lg-4 ">
-                    <div className="card">
+                    <div className="card mt-3">
                       <div className="card-header">
                         <h2>{lead.name}</h2>
                       </div>
