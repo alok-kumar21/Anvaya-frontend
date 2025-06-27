@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import useLeadContext from "../context/LeadContent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const LeadList = () => {
   const { leads, loading, error } = useLeadContext();
   const [tags, setTags] = useState([]);
   const [status, setStatus] = useState();
   const [priority, setPriority] = useState();
-  const [filter, setFilter] = useState();
+
+  let filteredData = [...leads];
 
   function tagsHandler(event) {
     const { checked, value } = event.target;
@@ -14,6 +15,48 @@ const LeadList = () => {
       setTags((prev) => [...prev, value]);
     } else {
       setTags((prev) => prev.filter((tag) => tag != value));
+    }
+  }
+
+  if (tags.length > 0) {
+    filteredData = filteredData.filter((lead) => {
+      let hasAllTags = true;
+      for (let i = 0; i < tags.length; i++) {
+        if (!lead.tags.includes(tags[i])) {
+          hasAllTags = false;
+          break;
+        }
+      }
+      return hasAllTags;
+    });
+  }
+
+  if (status) {
+    filteredData = filteredData?.filter((lead) => lead.status === status);
+  }
+  if (priority) {
+    filteredData = filteredData?.filter((lead) => lead.priority === priority);
+  }
+
+  // delete leads
+
+  function deleteLeadHandler(leadId) {
+    console.log(leadId);
+    try {
+      const response = fetch(`http://localhost:5001/v2/leads/${leadId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to Delete Leads");
+      } else {
+        filteredData = filteredData?.filter((lead) => lead._id != leadId);
+      }
+    } catch (error) {
+      console.log("Error:", error);
     }
   }
 
@@ -122,6 +165,16 @@ const LeadList = () => {
                     </select>
                   </div>
                 </li>
+                <br />
+                <li className="list-group-item">
+                  <Link
+                    to="/lead-status-view"
+                    className="btn btn-bg text-white"
+                  >
+                    <strong> Lead Status view</strong>
+                  </Link>
+                </li>
+                <br />
               </ul>
             </div>
           </div>
@@ -132,7 +185,7 @@ const LeadList = () => {
             <h3 className="ms-5">Lead Overview</h3>
           </div>
           <ul className=" mt-3">
-            {leads?.map((lead) => (
+            {filteredData?.map((lead) => (
               <li key={lead._id} className="list-group-item pt-3">
                 <div className="me-4 card">
                   <div className="card-header">
@@ -140,17 +193,29 @@ const LeadList = () => {
                   </div>
                   <div className="card-body">
                     <p>
-                      <strong>Status:</strong> {lead.status}
+                      <strong>SalesAgent:</strong> {lead?.salesAgent?.name}
                     </p>
                     <p>
-                      <strong>SalesAgent:</strong> {lead?.salesAgent?.name}
+                      <strong>Status:</strong> {lead.status}
                     </p>
                     <p>
                       <strong>Tags:</strong> {lead.tags.join(", ")}
                     </p>
                     <p>
-                      <strong>Source:</strong> {lead.source}
+                      <strong>Priority:</strong> {lead.priority}
                     </p>
+                    <Link
+                      to={`/lead-details/${lead._id}`}
+                      className="btn btn-bg"
+                    >
+                      View Detail
+                    </Link>
+                    <button
+                      onClick={() => deleteLeadHandler(lead._id)}
+                      className="btn btn-danger float-end"
+                    >
+                      Delete Lead
+                    </button>
                   </div>
                 </div>
               </li>

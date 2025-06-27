@@ -3,11 +3,18 @@ import "../App.css";
 import { useLeadContext } from "../context/LeadContent";
 
 const AddLead = () => {
-  const { formDataHandler, formSubmitHandler, formData } = useLeadContext();
+  const { formDataHandler, formSubmitHandler, formData, alertMessage } =
+    useLeadContext();
+  console.log(alertMessage);
 
   return (
     <>
       <section className=" container">
+        {alertMessage && (
+          <div className="alert alert-success text-center">
+            Lead Added Successfully
+          </div>
+        )}
         <div className=" p-3">
           <h1 className="text-center text-white">Add New Lead</h1>
         </div>
@@ -25,6 +32,7 @@ const AddLead = () => {
             name="name"
             value={formData.name}
             onChange={formDataHandler}
+            required={true}
           />
           <br />
           <label className="form-label" htmlFor="selectSource">
@@ -36,6 +44,7 @@ const AddLead = () => {
             name="source"
             id="selectSource"
             className="form-select"
+            required={true}
           >
             <option value="#">Select lead Source</option>
             <option value="Website">Website</option>
@@ -52,6 +61,7 @@ const AddLead = () => {
             id="selectStatus"
             className="form-select"
             name="status"
+            required={true}
           >
             <option value="#">Select Lead Status</option>
             <option value="New">New</option>
@@ -71,6 +81,7 @@ const AddLead = () => {
             aria-label="Multiple select example"
             name="tags"
             multiple
+            required={true}
           >
             <option value="#">Select Tags</option>
             <option value="High Value">High Value</option>
@@ -88,6 +99,7 @@ const AddLead = () => {
             name="timeToClose"
             value={formData.timeToClose}
             onChange={formDataHandler}
+            required={true}
           />
           <br />
           <label className="form-label" htmlFor="selectPriority">
@@ -99,6 +111,7 @@ const AddLead = () => {
             id="selectPriority"
             className="form-select"
             name="priority"
+            required={true}
           >
             <option value="#">Select Priority</option>
             <option value="High">High</option>

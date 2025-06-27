@@ -40,14 +40,17 @@ const Dashboard = () => {
                 </li>
                 <li className="list-group-item h5 pt-3 ps-4">
                   <Link
-                    to="/sales-agent"
+                    to="/sales-agent-View"
                     className="text-decoration-none text-white"
                   >
                     <i className="bi bi-bar-chart-fill"></i> Sales
                   </Link>
                 </li>
                 <li className="list-group-item h5 pt-3 ps-4">
-                  <Link className="text-decoration-none text-white">
+                  <Link
+                    to="/sales-agent"
+                    className="text-decoration-none text-white"
+                  >
                     <i className="bi bi-person-fill"></i> Agents
                   </Link>
                 </li>
@@ -60,11 +63,11 @@ const Dashboard = () => {
                     Reports
                   </Link>
                 </li>
-                <li className="list-group-item h5 pt-3 ps-4">
+                {/* <li className="list-group-item h5 pt-3 ps-4">
                   <Link className="text-decoration-none text-white">
                     <i className="bi bi-gear-fill"></i> Setting
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
 

@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
-import useLeadContext from "../context/LeadContent";
+import useFetch from "../pages/useFetch";
+import { useState, useEffect } from "react";
 const SalesAgentManagement = () => {
-  const { salesData, salesLoading, salesError } = useLeadContext();
-  console.log(salesData);
+  const {
+    data: salesData,
+    loading: salesLoading,
+    error: salesError,
+  } = useFetch(`http://localhost:5001/v2/agents`);
+
+  const [agents, setAgents] = useState();
+
+  useEffect(() => {
+    if (salesData) {
+      setAgents(salesData);
+    }
+  }, [salesData]);
+
   return (
     <>
       <section className="container leadlist py-4">
@@ -33,7 +46,7 @@ const SalesAgentManagement = () => {
               <hr />
             </div>
             <ul className="list">
-              {salesData?.map((agent) => (
+              {agents?.map((agent) => (
                 <li key={agent._id} className="me-5 p-3 list-group-item ">
                   <div className="card">
                     <div className="card-body">

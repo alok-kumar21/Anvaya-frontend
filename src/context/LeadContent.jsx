@@ -9,13 +9,11 @@ export default useLeadContext;
 
 export function LeadProvider({ children }) {
   const { data, loading, error } = useFetch(`http://localhost:5001/leads`);
-  const {
-    data: salesData,
-    loading: salesLoading,
-    error: salesError,
-  } = useFetch(`http://localhost:5001/v2/agents`);
 
+  const [alertMessage, setAlertMessage] = useState(false);
   const [editingId, setEditingId] = useState(false);
+  const [leads, setLeads] = useState([]);
+  const [filteredLeads, setFilteredLeads] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     source: "",
@@ -24,9 +22,6 @@ export function LeadProvider({ children }) {
     timeToClose: "",
     priority: "",
   });
-
-  const [leads, setLeads] = useState([]);
-  const [filteredLeads, setFilteredLeads] = useState([]);
 
   useEffect(() => {
     if (data) {
@@ -59,6 +54,7 @@ export function LeadProvider({ children }) {
   async function formSubmitHandler(event) {
     event.preventDefault();
     setEditingId(false);
+    setAlertMessage(true);
     try {
       const response = await fetch(
         editingId
@@ -87,12 +83,7 @@ export function LeadProvider({ children }) {
     } catch (error) {
       console.log("Error:", error);
     }
-    useEffect(() => {
-      if (data) {
-        setLeads(data);
-        setFilteredLeads(data);
-      }
-    }, [data]);
+    setAlertMessage(false);
   }
 
   function updateLeadHandler(leaddetail) {
@@ -115,9 +106,7 @@ export function LeadProvider({ children }) {
         loading,
         error,
         quickFilter,
-        salesData,
-        salesLoading,
-        salesError,
+        alertMessage,
         formDataHandler,
         formData,
         setFormData,
