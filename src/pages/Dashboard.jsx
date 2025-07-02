@@ -23,7 +23,6 @@ const Dashboard = () => {
         <header>
           <nav className=" brand p-3">
             <h1 className="text-center">Anvaya CRM App</h1>
-            <hr />
           </nav>
         </header>
         <main>
@@ -63,11 +62,6 @@ const Dashboard = () => {
                     Reports
                   </Link>
                 </li>
-                {/* <li className="list-group-item h5 pt-3 ps-4">
-                  <Link className="text-decoration-none text-white">
-                    <i className="bi bi-gear-fill"></i> Setting
-                  </Link>
-                </li> */}
               </ul>
             </div>
 
@@ -80,10 +74,24 @@ const Dashboard = () => {
                         <h2>{lead.name}</h2>
                       </div>
                       <div className="card-body">
-                        <p>Status: {lead.status}</p>
+                        {lead.status === "Closed" ? (
+                          <button className="btn btn-success">Closed</button>
+                        ) : lead.status === "New" ? (
+                          <button>New</button>
+                        ) : lead.status === "Contacted" ? (
+                          <button className="btn btn-info">Contacted</button>
+                        ) : lead.status === "Qualified" ? (
+                          <button className="btn btn-primary">Qualified</button>
+                        ) : (
+                          <button className="btn btn-dark">
+                            Proposal Sent
+                          </button>
+                        )}
+                        <br />
+
                         <Link
                           to={`/lead-details/${lead._id}`}
-                          className="btn btn-bg"
+                          className="btn btn-lg btn-bg  mt-3"
                         >
                           View Details
                         </Link>
@@ -96,13 +104,13 @@ const Dashboard = () => {
               <ul className="list text-white">
                 <h3>Lead Status</h3>
                 <li className="list-group-item">
-                  New: [{newLeads?.length}] Leads
+                  New: [ {newLeads?.length} ] Leads
                 </li>
                 <li className="list-group-item">
-                  Contacted: [{contactedLeads?.length}] Leads
+                  Contacted: [ {contactedLeads?.length} ] Leads
                 </li>
                 <li className="list-group-item">
-                  Qualified: [{qualifiedLeads?.length}] Leads
+                  Qualified: [ {qualifiedLeads?.length} ] Leads
                 </li>
               </ul>
               <hr className="mt-4 mb-4" />
@@ -110,7 +118,7 @@ const Dashboard = () => {
                 <h3 className="mb-4">Quick Filter</h3>
                 <li className="list-group-item">
                   <button
-                    className=" btn btn-lg btn-bg"
+                    className=" btn btn-lg btn-primary"
                     onClick={() => quickFilter("New")}
                   >
                     New

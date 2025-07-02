@@ -47,14 +47,11 @@ const SalesAgentView = () => {
 
   const [statusFilter, setStatusFilter] = useState("");
   const [priorityFilter, setPriorityFilter] = useState("");
-  // const [sortBy, setSortBy] = useState("");
 
-  // Get list of unique agents
   const uniqueAgents = [
     ...new Set(leads.map((lead) => lead?.salesAgent?.name).filter(Boolean)),
   ];
 
-  // Filter and sort leads for a given agent
   const filteredLeadsByAgent = (agentName) => {
     let data = leads.filter((lead) => lead?.salesAgent?.name === agentName);
 
@@ -65,10 +62,6 @@ const SalesAgentView = () => {
     if (priorityFilter) {
       data = data.filter((lead) => lead.priority === priorityFilter);
     }
-
-    // if (sortBy === "timeToClose") {
-    //   data = data.sort((a, b) => a.timeToClose - b.timeToClose);
-    // }
 
     return data;
   };
@@ -140,9 +133,14 @@ const SalesAgentView = () => {
                     <div key={lead._id} className="card mb-3">
                       <div className="card-header d-flex justify-content-between">
                         <strong>{lead.name}</strong>
-                        <span className="badge bg-secondary">
-                          {lead.priority}
-                        </span>
+
+                        {lead.priority === "Low" ? (
+                          <span className="badge bg-primary">Low</span>
+                        ) : lead.priority === "Medium" ? (
+                          <span className="badge bg-warning">Medium</span>
+                        ) : (
+                          <span className="badge bg-danger">High</span>
+                        )}
                       </div>
                       <div className="card-body">
                         <p>

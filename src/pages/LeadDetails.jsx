@@ -144,6 +144,7 @@
 // };
 
 // export default LeadDetails;
+
 import { Link, useParams } from "react-router-dom";
 import { useLeadContext } from "../context/LeadContent";
 import { useState, useEffect } from "react";
@@ -282,7 +283,7 @@ const LeadDetails = () => {
               )}
 
               <ul className="list mt-3">
-                {comments.length === 0 ? (
+                {comments?.length === 0 ? (
                   <li className="list-group-item text-muted">
                     No comments yet
                   </li>

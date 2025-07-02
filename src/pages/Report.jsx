@@ -152,19 +152,17 @@ const Report = () => {
   const closedLeads = leads?.filter((lead) => lead.status === "Closed");
   const notClosedLeads = leads?.filter((lead) => lead.status !== "Closed");
 
-  // 📅 Last 7 days
-  const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-  const closedLastWeek = closedLeads?.filter(
-    (lead) => new Date(lead.updatedAt) >= lastWeek
+  const { data: lastWeekData } = useFetch(
+    `http://localhost:5001/report/last-week`
   );
+  console.log(lastWeekData);
 
-  // 📊 Status breakdown
   const statusCounts = {};
   leads?.forEach((lead) => {
     statusCounts[lead.status] = (statusCounts[lead.status] || 0) + 1;
   });
 
-  // 👤 Agent-wise lead closure
+  //  Agent-wise lead close
   const agentClosedLeadMap = {};
   agentsData?.forEach((agent) => {
     const count = closedLeads?.filter(
@@ -249,13 +247,11 @@ const Report = () => {
                 <p className="text-center fw-bold">Leads Closed Last 7 Days</p>
                 <Bar
                   data={{
-                    labels: closedLastWeek?.map((lead) => lead.name),
+                    labels: lastWeekData?.map((lead) => lead.name),
                     datasets: [
                       {
                         label: "Closed Leads",
-                        data: closedLastWeek?.map(
-                          (lead) => lead.timeToClose || 0
-                        ),
+                        data: lastWeekData?.map((lead) => lead.closedAt),
                         backgroundColor: "#ff7043",
                       },
                     ],

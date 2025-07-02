@@ -48,10 +48,23 @@ const SalesAgentManagement = () => {
             <ul className="list">
               {agents?.map((agent) => (
                 <li key={agent._id} className="me-5 p-3 list-group-item ">
-                  <div className="card">
-                    <div className="card-body">
-                      <p className="card-text"> Agent Name: {agent.name}</p>
-                      <p className="card-text"> Agent Email: {agent.email}</p>
+                  <div className="card pt-5 pb-5 pe-5 ps-3">
+                    <div className="d-flex">
+                      <img
+                        src="https://icons.veryicon.com/png/o/system/crm-android-app-icon/app-icon-person.png"
+                        alt="agent-img"
+                        className="img-fluid"
+                        style={{ width: "10%" }}
+                      />
+                      <div className="mt-2 ms-2">
+                        <p className="card-text">
+                          {" "}
+                          <strong>Name:</strong> {agent.name}
+                        </p>
+                        <p className="card-text">
+                          <strong>Email:</strong> {agent.email}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </li>

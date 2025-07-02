@@ -188,16 +188,29 @@ const LeadList = () => {
             {filteredData?.map((lead) => (
               <li key={lead._id} className="list-group-item pt-3">
                 <div className="me-4 card">
-                  <div className="card-header">
-                    <strong>{lead.name}</strong>
+                  <div className="card-header d-flex justify-content-between">
+                    <p>
+                      <strong>{lead.name}</strong>
+                    </p>
+                    <p>
+                      {lead.status === "Closed" ? (
+                        <button className="btn btn-success">Closed</button>
+                      ) : lead.status === "New" ? (
+                        <button className="btn btn-warning">New</button>
+                      ) : lead.status === "Contacted" ? (
+                        <button className="btn btn-info">Contacted</button>
+                      ) : lead.status === "Qualified" ? (
+                        <button className="btn btn-primary">Qualified</button>
+                      ) : (
+                        <button className="btn btn-dark">Proposal Sent</button>
+                      )}
+                    </p>
                   </div>
                   <div className="card-body">
                     <p>
                       <strong>SalesAgent:</strong> {lead?.salesAgent?.name}
                     </p>
-                    <p>
-                      <strong>Status:</strong> {lead.status}
-                    </p>
+
                     <p>
                       <strong>Tags:</strong> {lead.tags.join(", ")}
                     </p>
@@ -212,7 +225,7 @@ const LeadList = () => {
                     </Link>
                     <button
                       onClick={() => deleteLeadHandler(lead._id)}
-                      className="btn btn-danger float-end"
+                      className="btn btn-danger ms-3"
                     >
                       Delete Lead
                     </button>
