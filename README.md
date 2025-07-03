@@ -81,6 +81,14 @@ Watch a walkthrough of all major features in this 5–7 minute demo:
 
 - Status distribution in pie or bar chart formats
 
+### Filtering (URL-based)
+
+- I implemented query-based filters so you can change the URL and the UI updates automatically. For example:
+
+`/leads?status=Contacted`
+
+`/leads?salesAgent=Megha&source=Referral`
+
 ## 📡 API Reference
 
 ### `GET /events`
