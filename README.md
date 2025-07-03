@@ -1,12 +1,123 @@
-# React + Vite
+# 📅 Anvaya CRM App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hi! This is a CRM (Customer Relationship Management) web app I built using React for the frontend. The main goal of this project is to help sales teams manage leads efficiently, track their progress, and visualize sales performance in a clear and user-friendly way.
+I wanted to understand how CRM systems work in real-world businesses and also get hands-on experience with filters, forms, charts, and state management in React. So I created "Anvaya CRM", which focuses on managing leads from the moment they're added to when they're closed.
 
-Currently, two official plugins are available:
+> Built with: **React** frontend, **Node.js/Express** backend, **MongoDB** database.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔗 Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[🚀 Visit Live Demo](https://meet-up-frontend-chi.vercel.app/)
+
+---
+
+## ⚙️ Quick Start
+
+```bash
+git clone https://github.com/alok-kumar21/Anvaya-frontend.git
+cd <your repo>
+npm install
+npm run dev
+```
+
+---
+
+## 🛠️ Technologies Used
+
+- React JS
+- React Router
+- Context API
+- custom Hooks
+- Node.js
+- Express.js
+- MongoDB
+- Bootstrap
+
+---
+
+## 🎥 Demo Video
+
+Watch a walkthrough of all major features in this 5–7 minute demo:  
+📽️ [Loom Video Link]() <!-- Add your Loom video link here -->
+
+---
+
+## ✨ Features
+
+### 🔍 Search
+
+- Instantly search for events by typing keywords in the search bar.
+
+### 🧭 Event Filtering
+
+- Filter events by type:
+  - ✅ Online (virtual)
+  - 📍 Offline (in-person)
+
+### 📋 Event Listing
+
+- Browse upcoming meetup events in a clean and user-friendly UI.
+
+### 📄 Event Details
+
+- Click any event to view a detailed page showing:
+  - Date & Time
+  - Location
+  - Description
+  - Organizer Information
+
+---
+
+## 📡 API Reference
+
+### `GET /events`
+
+- Retrieve a list of all events.  
+  **Response**:
+
+```json
+[
+  {
+    "_id": "123",
+    "title": "React Bootcamp",
+    "description": "An advanced workshop on React...",
+    ...
+  }
+]
+```
+
+### `GET /events/title/:titleName`
+
+- Get details for a specific event by title.  
+  **Response**:
+
+```json
+{
+  "_id": "123",
+  "title": "React Bootcamp",
+  "description": "An advanced workshop on React...",
+  "images": [...]
+}
+```
+
+### `POST /events`
+
+- Create a new event (protected route).  
+  **Response**:
+
+```json
+{
+  "_id": "123",
+  "title": "New Event Title",
+  ...
+}
+```
+
+---
+
+## 📬 Contact
+
+For bugs, feature requests, or feedback, feel free to reach out:  
+📧 **alok.8kumar21@gmail.com**

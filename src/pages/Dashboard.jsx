@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <section className="container">
+      <section className="mx-5">
         {loading && (
           <div className="alert alert-success text-center">Loading...</div>
         )}
@@ -21,7 +21,7 @@ const Dashboard = () => {
           </div>
         )}
         <header>
-          <nav className=" brand p-3">
+          <nav className=" brand pt-3 ">
             <h1 className="text-center">Anvaya CRM App</h1>
           </nav>
         </header>
@@ -77,7 +77,7 @@ const Dashboard = () => {
                         {lead.status === "Closed" ? (
                           <button className="btn btn-success">Closed</button>
                         ) : lead.status === "New" ? (
-                          <button>New</button>
+                          <button className="btn btn-warning">New</button>
                         ) : lead.status === "Contacted" ? (
                           <button className="btn btn-info">Contacted</button>
                         ) : lead.status === "Qualified" ? (
