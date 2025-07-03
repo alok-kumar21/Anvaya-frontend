@@ -46,29 +46,40 @@ Watch a walkthrough of all major features in this 5–7 minute demo:
 
 ## ✨ Features
 
-### 🔍 Search
+### LeadForm
 
-- Instantly search for events by typing keywords in the search bar.
+- This is where new leads are added. It includes inputs like lead name, source, assigned sales agent, status, tags, time to close, and priority. I made sure everything is dynamic using dropdowns and multi-selects for better UX. When the form is submitted, it makes an API call to save the lead in the database.
 
-### 🧭 Event Filtering
+### LeadList
 
-- Filter events by type:
-  - ✅ Online (virtual)
-  - 📍 Offline (in-person)
+- All leads are displayed here, and I added filters for things like sales agent, lead status, tags, and source. What’s cool is, these filters also reflect in the URL, so you can share filtered views like:
+  `/leads?salesAgent=Riya&status=New`
 
-### 📋 Event Listing
+- I also added sorting options so users can sort leads based on priority or how soon they are expected to close.
 
-- Browse upcoming meetup events in a clean and user-friendly UI.
+### LeadDetails
 
-### 📄 Event Details
+- When you click on a lead, it takes you to a detailed view with all the lead info. There’s also a comment section where team members can add updates or notes, which really helps track progress. You can also update the lead’s status or other details here.
 
-- Click any event to view a detailed page showing:
-  - Date & Time
-  - Location
-  - Description
-  - Organizer Information
+### LeadStatusView
 
----
+- This view groups all leads by their current status, like "New", "Contacted", or "Qualified". It makes it easier to focus on what stage most leads are in and helps prioritize follow-ups.
+
+### SalesAgentView
+
+- This one groups leads based on the sales agent handling them. It's really useful for managers to see the performance of each agent and balance workloads if needed.
+
+### Reports and Visualizations
+
+-To make data more visual, I added a reports section using Chart.js. It includes:
+
+- Leads closed last week
+
+- Total leads in the pipeline (by status)
+
+- Performance by sales agent
+
+- Status distribution in pie or bar chart formats
 
 ## 📡 API Reference
 
