@@ -71,7 +71,7 @@ Watch a walkthrough of all major features in this 5–7 minute demo:
 
 ### Reports and Visualizations
 
--To make data more visual, I added a reports section using Chart.js. It includes:
+- To make data more visual, I added a reports section using Chart.js. It includes:
 
 - Leads closed last week
 

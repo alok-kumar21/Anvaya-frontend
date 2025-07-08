@@ -58,7 +58,7 @@ const Dashboard = () => {
                     to="/report"
                     className="text-decoration-none text-white"
                   >
-                    <i className="bi bi-file-earmark-bar-graph-fill"></i>{" "}
+                    <i className="bi bi-file-earmark-bar-graph-fill"></i>
                     Reports
                   </Link>
                 </li>
